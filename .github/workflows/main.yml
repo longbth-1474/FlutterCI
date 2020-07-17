@@ -18,6 +18,7 @@ jobs:
       with:
           channel: 'stable'
     - run: flutter pub get
+    - run: echo "$(git describe --tags 'git rev-list --tags --max-count=1)"
     
     #lane: build number
     - name: Generate build number
