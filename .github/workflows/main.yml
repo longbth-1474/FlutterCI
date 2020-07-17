@@ -33,9 +33,9 @@ jobs:
     - name: Build
       if: contains(github.event.pull_request.labels.*.name, 'bug')
       env:
-        FIREBASE_SECRET: ${{ secrets.FIREBASE_SECRET }}
+        GOOGLE_SERVICE_ANDROID_DEV: ${{ secrets.GOOGLE_SERVICE_ANDROID_DEV }}
       run: |
-        echo $FIREBASE_SECRET > FlutterCI/app/google-services.json          
+        echo $GOOGLE_SERVICE_ANDROID_DEV > FlutterCI/app/google-services.json          
         flutter build appbundle
         flutter build apk
     - name: Upload
