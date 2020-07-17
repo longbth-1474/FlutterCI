@@ -1,5 +1,6 @@
 name: CI/CD
-on: [pull_request, push]
+on: 
+  push
 
 jobs:
 
@@ -14,36 +15,35 @@ jobs:
         java-version: '12.x'
     - uses: subosito/flutter-action@v1
       with:
-          channel: 'beta'
+          channel: 'stable'
     - run: flutter pub get
     
     #lane: build number
-
     - name: Generate build number
       uses: einaregilsson/build-number@v2
       with:
         token: ${{secrets.github_token}}
-    - name: Print new build number
-      run: echo "Build number is $BUILD_NUMBER"
-    - name: Print label
-      run: echo "Build label"
   
    #lane: build develop
-    - name: Build
+    - name: decode google-service.json
       env:
         GOOGLE_SERVICE_ANDROID_DEV: ${{ secrets.GOOGLE_SERVICE_ANDROID_DEV }}
       run: |
         echo $GOOGLE_SERVICE_ANDROID_DEV > ./android/app/google-services.json      
+
+    - name: build
+      run: |
         flutter build appbundle
         flutter build apk
-    - name: Upload
+
+    - name: Deploy
       uses: actions/upload-artifact@master
       with:
           name: apk-build
           path: build/app/outputs/bundle/release
 
 
-    - name: Deploy
+    - name: Upload firebase
       if: contains(github.event.pull_request.labels.*.name, 'bug')
       uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
       with:
