@@ -32,13 +32,12 @@ jobs:
    #lane: build develop
     - name: Build
       if: contains(github.event.pull_request.labels.*.name, 'bug')
-      run: |
-          echo "${{ secrets.GOOGLE_SERVICE_DEV }}" > google-services.txt
-          base64 --decode google-services.txt > $HOME/work/FlutterCI/android/app/src/google-services.json
-          flutter build appbundle
-          flutter build apk
       env:
-          SECRET_PASSPHRASE: ${{ secrets.SECRET_PASSPHRASE }}
+        FIREBASE_SECRET: ${{ secrets.FIREBASE_SECRET }}
+      run: |
+        echo $FIREBASE_SECRET > FlutterCI/app/google-services.json          
+        flutter build appbundle
+        flutter build apk
     - name: Upload
       uses: actions/upload-artifact@master
       with:
