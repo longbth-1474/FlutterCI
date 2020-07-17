@@ -26,12 +26,10 @@ jobs:
     - name: Print new build number
       run: echo "Build number is $BUILD_NUMBER"
     - name: Print label
-      if: contains(github.event.pull_request.labels.*.name, 'bug')
       run: echo "Build label"
   
    #lane: build develop
     - name: Build
-      if: contains(github.event.pull_request.labels.*.name, 'bug')
       env:
         GOOGLE_SERVICE_ANDROID_DEV: ${{ secrets.GOOGLE_SERVICE_ANDROID_DEV }}
       run: |
