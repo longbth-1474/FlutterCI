@@ -34,7 +34,7 @@ jobs:
       if: contains(github.event.pull_request.labels.*.name, 'bug')
       run: |
           echo "${{ secrets.GOOGLE_SERVICE_DEV }}" > google-services.txt
-          base64 --decode google-services.txt > google-services.json
+          base64 --decode google-services.txt > $HOME/runner/work/FlutterCI/FlutterCI/android/app/src/google-services.json
           flutter build appbundle
           flutter build apk
       env:
