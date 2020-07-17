@@ -1,8 +1,9 @@
 name: CI/CD
 on: 
-  create:
-    tags:
-      - 'v*'
+  release:
+    types:
+      - created
+        
 
 jobs:
 
