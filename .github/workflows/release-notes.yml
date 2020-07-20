@@ -16,10 +16,10 @@ jobs:
     - name: Upload Release Notes to Wiki
       uses: docker://decathlon/wiki-page-creator-action:2.0.0
       env:
-        ACTION_MAIL: oss@decathlon.com
-        ACTION_NAME: decathlonbot
-        GH_PAT: ${{ secrets.GITHUB_TOKEN }}
+        ACTION_MAIL: tran.hoang.longb@sun-asterisk.com
+        ACTION_NAME: longbth-1474
+        GH_PAT: ${{ secrets.GH_PAT }}
         MD_FOLDER: temp_release_notes
         OWNER: longbth-1474
-        REPO_NAME: FlutterCI
+        REPO_NAME: https://github.com/longbth-1474/FlutterCI/
         SKIP_MD: README.md
