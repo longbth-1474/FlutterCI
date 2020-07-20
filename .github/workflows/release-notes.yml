@@ -21,5 +21,5 @@ jobs:
         GH_PAT: ${{ secrets.GH_PAT }}
         MD_FOLDER: temp_release_notes
         OWNER: longbth-1474
-        REPO_NAME: https://github.com/longbth-1474/FlutterCI/
+        REPO_NAME: FlutterCI
         SKIP_MD: README.md
